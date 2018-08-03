@@ -1,0 +1,3 @@
+--recursive ./test/*test.js
+--reporter spec
+--timeout 1000

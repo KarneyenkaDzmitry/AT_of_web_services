@@ -1,0 +1,35 @@
+{
+  "name": "at_of_web_services",
+  "version": "1.0.0",
+  "description": "automated testing of web services",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "preinstall": "mkdir reports logs",
+    "test": "./node_modules/.bin/mocha",
+    "lint": "./node_modules/.bin/eslint ./ --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KarneyenkaDzmitry/AT_of_web_services.git"
+  },
+  "keywords": [
+    "mocha",
+    "web_service",
+    "rest"
+  ],
+  "author": "Dzmitry_Karneyenka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KarneyenkaDzmitry/AT_of_web_services/issues"
+  },
+  "homepage": "https://github.com/KarneyenkaDzmitry/AT_of_web_services#readme",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^5.2.0",
+    "log4js": "^3.0.4",
+    "mocha": "^5.2.0",
+    "mochawesome": "^3.0.3",
+    "request": "^2.87.0",
+    "request-promise-native": "^1.0.5"
+  }
+}
