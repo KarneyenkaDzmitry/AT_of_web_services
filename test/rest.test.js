@@ -1,7 +1,8 @@
 'use strict';
 const { expect } = require('chai');
+const logger = require('../configs/logger.conf');
 
 describe('', () => {
-    
-    console.log('first step');
+
+    logger.error('first step');
 });

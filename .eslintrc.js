@@ -18,7 +18,7 @@ module.exports = {
         "no-unused-vars": 2,
         "no-extra-boolean-cast": 2,
         "comma-dangle": [2, "never"],
-        "no-console": 0,//1
+        "no-console": 1,
         "no-empty": 1,
         "accessor-pairs": 2,
         "block-scoped-var": 2,
