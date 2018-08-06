@@ -5,14 +5,13 @@ configure({
     appenders: {
         error: { type: 'file', filename: './logs/error.log' },
         combine: { type: 'file', filename: './logs/combine.log' },
-        out: { type: 'stdout' }
+        out: { type: 'stdout' },
+        errors: { type: 'logLevelFilter', appender: 'error', level: 'error' }
     },
     categories: {
-        default: { appenders: ['error'], level: 'error' },
-        stdout: { appenders: ['combine', 'out'], level: 'debug' }
+        default: { appenders: ['errors', 'combine', 'out'], level: 'debug' }
     }
 });
-const logger = getLogger(['stdout', 'default']);
-logger.debug("Some debug messages");
-logger.info("Some info messages");
+const logger = getLogger();
+
 module.exports = logger;
