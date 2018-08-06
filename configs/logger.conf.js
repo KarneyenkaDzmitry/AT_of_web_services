@@ -1,6 +1,7 @@
 'use strict';
 const { configure, getLogger } = require('log4js');
 
+
 configure({
     appenders: {
         error: { type: 'file', filename: './logs/error.log' },
@@ -9,9 +10,10 @@ configure({
         errors: { type: 'logLevelFilter', appender: 'error', level: 'error' }
     },
     categories: {
-        default: { appenders: ['errors', 'combine', 'out'], level: 'debug' }
+        default: { appenders: ['out'], level: 'trace' },
+        REST: { appenders: ['errors', 'combine', 'out'], level: 'trace' }
     }
 });
-const logger = getLogger();
+const logger = getLogger('REST');
 
 module.exports = logger;

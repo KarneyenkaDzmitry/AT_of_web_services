@@ -1,14 +1,16 @@
 module.exports = {
+    "root": true,
     "env": {
         "browser": true,
         "es6": true,
         "node": true,
         "protractor": true,
-        "jasmine": true
+        "jasmine": true,
+        "mocha" : true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
-        "ecmaVersion": 6,
+        "ecmaVersion": 2017,
         "sourceType": "module",
         "ecmaFeatures": { "impliedStrict": true }
     },
@@ -137,7 +139,7 @@ module.exports = {
         "sort-vars": [0, { "ignoreCase": true }],
         "keyword-spacing": 1,
         "space-before-blocks": [1, { "functions": "always", "keywords": "always" }],
-        "space-before-function-paren": ["error", { "anonymous": "never", "named": "never", "asyncArrow": "never" }],
+        "space-before-function-paren": ["error", { "anonymous": "never", "named": "never", "asyncArrow": "always" }],
         "arrow-spacing": ["error", { "before": true, "after": true }],
         "space-in-parens": ["error", "never"],
         "space-infix-ops": [2, { "int32Hint": false }],
