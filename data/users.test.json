@@ -1,0 +1,38 @@
+[
+    {
+        "uri":"/users",
+        "method": "GET",
+        "content-type" : "application/json; charset=utf-8",
+        "body-array-length": 10
+    },
+    {
+        "uri":"/posts",
+        "method": "GET",
+        "content-type" : "application/json; charset=utf-8",
+        "body-array-length": 100
+    },
+    {
+        "uri":"/comments",
+        "method": "GET",
+        "content-type" : "application/json; charset=utf-8",
+        "body-array-length": 500
+    },
+    {
+        "uri":"/albums",
+        "method": "GET",
+        "content-type" : "application/json; charset=utf-8",
+        "body-array-length": 100
+    },
+    {
+        "uri":"/photos",
+        "method": "GET",
+        "content-type" : "application/json; charset=utf-8",
+        "body-array-length": 5000
+    },
+    {
+        "uri":"/todos",
+        "method": "GET",
+        "content-type" : "application/json; charset=utf-8",
+        "body-array-length": 200
+    }
+]

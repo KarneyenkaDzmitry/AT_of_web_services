@@ -1,42 +1,36 @@
 'use strict';
 const { expect } = require('chai');
 const logger = require('../configs/logger.conf');
-const request = require('request-promise-native');
-const options = {
-    url: 'https://jsonplaceholder.typicode.com/users',
-    method: 'GET',
-    resolveWithFullResponse: true,
-    json: true
-};
+const sender = require('../utils/sender');
+const usersData = require('../data/users.test.json');
+const BASEURI = require('../data/host.json').uri;
+const statusCode = 200;
+const statusMessage = 'OK';
 
-describe('Tests of https://jsonplaceholder.typicode.com/users', () => {
-    logger.info('Get started!');
-    let response;
+describe(`Tests of ${BASEURI}`, () => {
+    usersData.map((data) => {
+        let response;
+        const path = data.uri;
 
-    before(async () => {
-        logger.info('Is making request to service');
-        try {
-            response = await request(options);
-        } catch (error) {
-            logger.error('Was catching error during receiving response', error);
-        }
-        /* eslint-disable */
-        //console.log(response);
-        /* eslint-enable */
-    });
-    it('Status and message of response', () => {
-        logger.info('Checking respone`s status and message');
-        expect(response.statusCode).equal(200);
-        expect(response.statusMessage).equals('OK');
-    });
+        before(async () => {
+            data.uri = BASEURI + path;
+            response = await sender(data);
+        });
 
-    it('Content-type value of the responce', () => {
-        logger.info('Checking respone`s content-type value');
-        expect(response.headers['content-type']).equal('application/json; charset=utf-8');
-    });
+        it(`Status and message of response. path:[${path}]`, () => {
+            logger.info(`Checking respone's status and message. path:[${path}]`);
+            expect(response.statusCode).equal(statusCode);
+            expect(response.statusMessage).equals(statusMessage);
+        });
 
-    it('Verification the response body', () => {
-        logger.info('Checking respone`s body');
-        expect(response.body.length).equal(10);
+        it(`Content-type value of the responce. path:[${path}]`, () => {
+            logger.info(`Checking respone's content-type value. path:[${path}]`);
+            expect(response.headers['content-type']).equal(data['content-type']);
+        });
+
+        it(`Verification the response body. path:[${path}]`, () => {
+            logger.info(`Checking respone's body. path:[${path}]`);
+            expect(response.body.length).equal(data['body-array-length']);
+        });
     });
 });
