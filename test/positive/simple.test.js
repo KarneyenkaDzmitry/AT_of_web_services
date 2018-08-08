@@ -1,9 +1,10 @@
 'use strict';
 const { expect } = require('chai');
-const logger = require('../configs/logger.conf');
-const sender = require('../utils/sender');
-const usersData = require('../data/users.test.json');
-const BASEURI = require('../data/host.json').uri;
+const logger = require('../../configs/logger.conf');
+const sender = require('../../utils/sender');
+const usersData = require('../../data/simple.test.json');
+const BASEURI = require('../../data/host.json').uri;
+const ajv = new require('ajv')();
 const statusCode = 200;
 const statusMessage = 'OK';
 
@@ -32,5 +33,11 @@ describe(`Tests of ${BASEURI}`, () => {
             logger.info(`Checking respone's body. path:[${path}]`);
             expect(response.body.length).equal(data['body-array-length']);
         });
+
+        it(`Verification the response body with schemas. path:[${path}]`, () => {
+            logger.info(`Checking respone's body with schemas. path:[${path}]`);
+            expect(ajv.validate(require(data.schema), response.body)).equal(true);
+        });
+
     });
 });

@@ -1,0 +1,22 @@
+[
+    {
+        "uri" : "/books",
+        "method" : "GET",
+        "statusCode" : 404
+    },
+    {
+        "uri" : "/things/1",
+        "method" : "GET",
+        "statusCode" : 404
+    },
+    {
+        "uri" : "/users/1",
+        "method" : "UPDATE",
+        "statusCode" : 400
+    },
+    {
+        "uri" : "/posts/50",
+        "method" : "OPTION",
+        "statusCode" : 400
+    }
+]

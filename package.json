@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/KarneyenkaDzmitry/AT_of_web_services#readme",
   "dependencies": {
+    "ajv": "^6.5.2",
     "chai": "^4.1.2",
     "eslint": "^5.2.0",
     "log4js": "^3.0.4",
