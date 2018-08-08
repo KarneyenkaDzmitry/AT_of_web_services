@@ -1,0 +1,37 @@
+[
+    {
+        "uri": "/users",
+        "method": "PUT",
+        "statusCode": 404,
+        "body": {
+            "userId" : 12,
+            "title" : "This is my title",
+            "body" : "Don't worry, be happy"
+        },
+        "headers": {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    },
+    {
+        "uri": "/user/1",
+        "method": "POST",
+        "statusCode": 404,
+        "body": {},
+        "headers": {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    },
+    {
+        "uri": "/users",
+        "method": "PATCH",
+        "statusCode": 404,
+        "body": {
+            "username" : "Dzmitry"
+        }
+    },
+    {
+        "uri": "/posts/50",
+        "method": "OPTION",
+        "statusCode": 400
+    }
+]

@@ -6,7 +6,8 @@ function sendRestRequestWithHeader(parameters) {
         method: parameters.method,
         headers: parameters.header,
         resolveWithFullResponse: true,
-        json: true
+        json: true,
+        body: parameters.body
     };
 
     return request(options).then((response) => {

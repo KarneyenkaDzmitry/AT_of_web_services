@@ -14,6 +14,6 @@ configure({
         REST: { appenders: ['errors', 'combine', 'out'], level: 'trace' }
     }
 });
-const logger = getLogger('REST');
+const logger = getLogger();
 
 module.exports = logger;

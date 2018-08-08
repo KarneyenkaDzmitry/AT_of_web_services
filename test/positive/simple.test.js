@@ -40,34 +40,36 @@ describe(`Tests of ${BASEURI}`, () => {
         it(`Test of items ${path}`, () => {
 
             describe(`Tests of items ${path}`, () => {
-                (response.body).map((item) => {
-                    let itemResponse;
-                    const itemPath = data.uri + `/${item.id}`;
+                (response.body).map((item, index) => {
+                    if (index < 10) {
+                        let itemResponse;
+                        const itemPath = data.uri + `/${item.id}`;
 
-                    before(async () => {
-                        data.uri = itemPath;
-                        itemResponse = await sender(data);
-                    });
+                        before(async () => {
+                            data.uri = itemPath;
+                            itemResponse = await sender(data);
+                        });
 
-                    it(`Status and message of response. path:[${itemPath}]`, () => {
-                        logger.info(`Checking respone's status and message. path:[${itemPath}]`);
-                        expect(itemResponse.statusCode).equal(statusCode);
-                        expect(itemResponse.statusMessage).equals(statusMessage);
-                    });
+                        it(`Status and message of response. path:[${itemPath}]`, () => {
+                            logger.info(`Checking respone's status and message. path:[${itemPath}]`);
+                            expect(itemResponse.statusCode).equal(statusCode);
+                            expect(itemResponse.statusMessage).equals(statusMessage);
+                        });
 
-                    it(`Content-type value of the responce. path:[${itemPath}]`, () => {
-                        logger.info(`Checking respone's content-type value. path:[${itemPath}]`);
-                        expect(itemResponse.headers['content-type']).equal(data['content-type']);
-                    });
+                        it(`Content-type value of the responce. path:[${itemPath}]`, () => {
+                            logger.info(`Checking respone's content-type value. path:[${itemPath}]`);
+                            expect(itemResponse.headers['content-type']).equal(data['content-type']);
+                        });
 
-                    it(`Verification the response body with schemas. path:[${itemPath}]`, () => {
-                        logger.info(`Checking respone's body with schemas. path:[${itemPath}]`);
-                        const valid = ajv.validate(require(data.itemSchema), itemResponse.body);
-                        if (!valid) {
-                            logger.debug(ajv.errors);
-                        }
-                        expect(valid).equal(true);
-                    });
+                        it(`Verification the response body with schemas. path:[${itemPath}]`, () => {
+                            logger.info(`Checking respone's body with schemas. path:[${itemPath}]`);
+                            const valid = ajv.validate(require(data.itemSchema), itemResponse.body);
+                            if (!valid) {
+                                logger.debug(ajv.errors);
+                            }
+                            expect(valid).equal(true);
+                        });
+                    }
                 });
             });
         });
