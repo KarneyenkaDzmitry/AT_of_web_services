@@ -1,35 +1,37 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "users.schema.json",
-    "title": "users list",
-    "description": "A list of all users",
+    "$id": "comments.schema.json",
+    "title": "List of comments",
+    "description": "A list of all comments",
     "type": "array",
     "items": {
         "type": "object",
         "properties": {
             "id": {
                 "type": "number",
+                "exclusiveMinimum": 0,
+                "uniqueProperty": true
+            },
+            "postId": {
+                "type": "number",
                 "exclusiveMinimum": 0
             },
             "name": {
                 "type": "string"
             },
-            "username": {
-                "type": "string"
-            },
             "email": {
                 "type": "string"
             },
-            "address": {
-                "type": "object"
+            "body": {
+                "type": "string"
             }
         },
         "required": [
             "id",
+            "postId",
             "name",
-            "username",
             "email",
-            "address"
+            "body"
         ]
     },
     "minItems": 1,

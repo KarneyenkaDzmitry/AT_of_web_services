@@ -3,42 +3,36 @@
         "uri":"/users",
         "method": "GET",
         "content-type" : "application/json; charset=utf-8",
-        "body-array-length": 10,
         "schema" : "../../data/schemas/users.schema.json"
     },
     {
         "uri":"/posts",
         "method": "GET",
         "content-type" : "application/json; charset=utf-8",
-        "body-array-length": 100,
-        "schema" : "../../data/schemas/users.schema.json"
+        "schema" : "../../data/schemas/posts.schema.json"
     },
     {
         "uri":"/comments",
         "method": "GET",
         "content-type" : "application/json; charset=utf-8",
-        "body-array-length": 500,
-        "schema" : "../../data/schemas/users.schema.json"
+        "schema" : "../../data/schemas/comments.schema.json"
     },
     {
         "uri":"/albums",
         "method": "GET",
         "content-type" : "application/json; charset=utf-8",
-        "body-array-length": 100,
-        "schema" : "../../data/schemas/users.schema.json"
+        "schema" : "../../data/schemas/albums.schema.json"
     },
     {
         "uri":"/photos",
         "method": "GET",
         "content-type" : "application/json; charset=utf-8",
-        "body-array-length": 5000,
-        "schema" : "../../data/schemas/users.schema.json"
+        "schema" : "../../data/schemas/photos.schema.json"
     },
     {
         "uri":"/todos",
         "method": "GET",
         "content-type" : "application/json; charset=utf-8",
-        "body-array-length": 200,
-        "schema" : "../../data/schemas/users.schema.json"
+        "schema" : "../../data/schemas/todos.schema.json"
     }
 ]

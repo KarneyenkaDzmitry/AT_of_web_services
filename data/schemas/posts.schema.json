@@ -1,35 +1,33 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "users.schema.json",
-    "title": "users list",
-    "description": "A list of all users",
+    "$id": "posts.schema.json",
+    "title": "List of posts",
+    "description": "A list of all posts",
     "type": "array",
     "items": {
         "type": "object",
         "properties": {
             "id": {
                 "type": "number",
+                "exclusiveMinimum": 0,
+                "uniqueProperty": true
+            },
+            "userId": {
+                "type": "number",
                 "exclusiveMinimum": 0
             },
-            "name": {
+            "title": {
                 "type": "string"
             },
-            "username": {
+            "body": {
                 "type": "string"
-            },
-            "email": {
-                "type": "string"
-            },
-            "address": {
-                "type": "object"
             }
         },
         "required": [
             "id",
-            "name",
-            "username",
-            "email",
-            "address"
+            "userId",
+            "title",
+            "body"
         ]
     },
     "minItems": 1,

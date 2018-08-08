@@ -1,0 +1,35 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "todos.schema.json",
+    "title": "List of todos",
+    "description": "A list of all todos",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "uniqueProperty": true
+            },
+            "userId": {
+                "type": "number",
+                "exclusiveMinimum": 0
+            },
+            "title": {
+                "type": "string"
+            },
+            "completed": {
+                "type": "boolean"
+            }
+        },
+        "required": [
+            "id",
+            "userId",
+            "title",
+            "completed"
+        ]
+    },
+    "minItems": 1,
+    "uniqueItems": true
+}
