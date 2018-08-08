@@ -3,36 +3,42 @@
         "uri":"/users",
         "method": "GET",
         "content-type" : "application/json; charset=utf-8",
-        "schema" : "../../data/schemas/users.schema.json"
+        "schema" : "../../data/schemas/users.schema.json",
+        "itemSchema" : "../../data/schemas/user.schema.json"
     },
     {
         "uri":"/posts",
         "method": "GET",
         "content-type" : "application/json; charset=utf-8",
-        "schema" : "../../data/schemas/posts.schema.json"
+        "schema" : "../../data/schemas/posts.schema.json",
+        "itemSchema" : "../../data/schemas/post.schema.json"
     },
     {
         "uri":"/comments",
         "method": "GET",
         "content-type" : "application/json; charset=utf-8",
-        "schema" : "../../data/schemas/comments.schema.json"
+        "schema" : "../../data/schemas/comments.schema.json",
+        "itemSchema" : "../../data/schemas/comment.schema.json"
     },
     {
         "uri":"/albums",
         "method": "GET",
         "content-type" : "application/json; charset=utf-8",
-        "schema" : "../../data/schemas/albums.schema.json"
+        "schema" : "../../data/schemas/albums.schema.json",
+        "itemSchema" : "../../data/schemas/album.schema.json"
     },
     {
         "uri":"/photos",
         "method": "GET",
         "content-type" : "application/json; charset=utf-8",
-        "schema" : "../../data/schemas/photos.schema.json"
+        "schema" : "../../data/schemas/photos.schema.json",
+        "itemSchema" : "../../data/schemas/photo.schema.json"
     },
     {
         "uri":"/todos",
         "method": "GET",
         "content-type" : "application/json; charset=utf-8",
-        "schema" : "../../data/schemas/todos.schema.json"
+        "schema" : "../../data/schemas/todos.schema.json",
+        "itemSchema" : "../../data/schemas/todo.schema.json"
     }
 ]

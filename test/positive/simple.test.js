@@ -31,13 +31,45 @@ describe(`Tests of ${BASEURI}`, () => {
 
         it(`Verification the response body with schemas. path:[${path}]`, () => {
             logger.info(`Checking respone's body with schemas. path:[${path}]`);
-            const schema = require(data.schema);
-            const valid = ajv.validate(schema, response.body);
+            const valid = ajv.validate(require(data.schema), response.body);
             if (!valid) {
                 logger.debug(ajv.errors);
             }
             expect(valid).equal(true);
         });
+        it(`Test of items ${path}`, () => {
 
+            describe(`Tests of items ${path}`, () => {
+                (response.body).map((item) => {
+                    let itemResponse;
+                    const itemPath = data.uri + `/${item.id}`;
+
+                    before(async () => {
+                        data.uri = itemPath;
+                        itemResponse = await sender(data);
+                    });
+
+                    it(`Status and message of response. path:[${itemPath}]`, () => {
+                        logger.info(`Checking respone's status and message. path:[${itemPath}]`);
+                        expect(itemResponse.statusCode).equal(statusCode);
+                        expect(itemResponse.statusMessage).equals(statusMessage);
+                    });
+
+                    it(`Content-type value of the responce. path:[${itemPath}]`, () => {
+                        logger.info(`Checking respone's content-type value. path:[${itemPath}]`);
+                        expect(itemResponse.headers['content-type']).equal(data['content-type']);
+                    });
+
+                    it(`Verification the response body with schemas. path:[${itemPath}]`, () => {
+                        logger.info(`Checking respone's body with schemas. path:[${itemPath}]`);
+                        const valid = ajv.validate(require(data.itemSchema), itemResponse.body);
+                        if (!valid) {
+                            logger.debug(ajv.errors);
+                        }
+                        expect(valid).equal(true);
+                    });
+                });
+            });
+        });
     });
 });
