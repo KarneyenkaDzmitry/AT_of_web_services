@@ -11,9 +11,9 @@ configure({
     },
     categories: {
         default: { appenders: ['out'], level: 'trace' },
-        REST: { appenders: ['errors', 'combine', 'out'], level: 'trace' }
+        REST: { appenders: ['errors', 'combine'], level: 'trace' }
     }
 });
-const logger = getLogger();
+const logger = getLogger('REST');
 
 module.exports = logger;

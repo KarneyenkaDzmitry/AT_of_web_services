@@ -1,12 +1,11 @@
 'use strict';
-const { expect } = require('chai');
 const logger = require('../../configs/logger.conf');
 const sender = require('../../utils/sender');
 const usersData = require('../../data/simple.test.json');
 const BASEURI = require('../../data/host.json').uri;
-const ajv = new require('ajv')({ allErrors: true });
 const statusCode = 200;
 const statusMessage = 'OK';
+const checker = require('../../utils/checker.js');
 
 describe(`Tests of ${BASEURI}`, () => {
     usersData.map((data) => {
@@ -16,61 +15,82 @@ describe(`Tests of ${BASEURI}`, () => {
         before(async () => {
             data.uri = BASEURI + path;
             response = await sender(data);
+            data.items = response.body.length < 15 ? response.body.length : 15;
         });
 
         it(`Status and message of response. path:[${path}]`, () => {
             logger.info(`Checking respone's status and message. path:[${path}]`);
-            expect(response.statusCode).equal(statusCode);
-            expect(response.statusMessage).equals(statusMessage);
+            checker.statusCode(response.statusCode, statusCode);
+            checker.statusMessage(response.statusMessage, statusMessage);
         });
 
         it(`Content-type value of the responce. path:[${path}]`, () => {
             logger.info(`Checking respone's content-type value. path:[${path}]`);
-            expect(response.headers['content-type']).equal(data['content-type']);
+            checker.contentType(response.headers['content-type'], data['content-type']);
         });
 
         it(`Verification the response body with schemas. path:[${path}]`, () => {
             logger.info(`Checking respone's body with schemas. path:[${path}]`);
-            const valid = ajv.validate(require(data.schema), response.body);
-            if (!valid) {
-                logger.debug(ajv.errors);
-            }
-            expect(valid).equal(true);
+            checker.body(data.schema, response.body);
         });
-        it(`Test of items ${path}`, () => {
 
-            describe(`Tests of items ${path}`, () => {
-                (response.body).map((item, index) => {
-                    if (index < 10) {
-                        let itemResponse;
-                        const itemPath = data.uri + `/${item.id}`;
+        it(`Tests of items [${path}]`, () => {
+            describe(`There are [${data.items}] items`, () => {
+                for (let item = 1; item <= data.items; item++) {
+                    let itemResponse;
+                    const itemPath = data.uri + `/${item}`;
+                    before(async () => {
+                        data.uri = itemPath;
+                        itemResponse = await sender(data);
+                    });
 
-                        before(async () => {
-                            data.uri = itemPath;
-                            itemResponse = await sender(data);
+                    it(`Status and message of response. path:[${itemPath}]`, () => {
+                        logger.info(`Checking respone's status and message. path:[${itemPath}]`);
+                        checker.statusCode(itemResponse.statusCode, statusCode);
+                        checker.statusMessage(itemResponse.statusMessage, statusMessage);
+                    });
+
+                    it(`Content-type value of the responce. path:[${itemPath}]`, () => {
+                        logger.info(`Checking respone's content-type value. path:[${itemPath}]`);
+                        checker.contentType(itemResponse.headers['content-type'], data['content-type']);
+                    });
+
+                    it(`Verification the response body with schemas. path:[${itemPath}]`, () => {
+                        logger.info(`Checking respone's body with schemas. path:[${itemPath}]`);
+                        checker.body(data.itemSchema, itemResponse.body);
+                    });
+
+                    it(`Verification nested resources. nested variants:[${data.nested}]  path:[${itemPath}]`, () => {
+                        describe(`Verification nested resources. nested variants:[${data.nested}]  path:[${itemPath}]`, () => {
+                            data.nested.map((appendix) => {
+                                const nestedPath = itemPath + appendix;
+                                let nestedData = data;
+                                let nestedResponse;
+                                before(async () => {
+                                    nestedData.uri = nestedPath;
+                                    logger.debug("nestedData: " + JSON.stringify(nestedPath + '   ' + nestedData.uri));
+                                    nestedResponse = await sender(nestedData);
+                                });
+
+                                it(`Status and message of response. path:[${nestedPath}]`, () => {
+                                    logger.info(`Checking respone's status and message. path:[${nestedPath}]`);
+                                    checker.statusCode(nestedResponse.statusCode, statusCode);
+                                    checker.statusMessage(nestedResponse.statusMessage, statusMessage);
+                                });
+
+                                it(`Content-type value of the responce. path:[${nestedPath}]`, () => {
+                                    logger.info(`Checking respone's content-type value. path:[${nestedPath}]`);
+                                    checker.contentType(nestedResponse.headers['content-type'], data['content-type']);
+                                });
+
+                                // it(`Verification the response body with schemas. path:[${nestedPath}]`, () => {
+                                //     logger.info(`Checking respone's body with schemas. path:[${nestedPath}]`);
+                                //     checker.body(data.schema, nestedResponse.body);
+                                // });
+                            });
                         });
-
-                        it(`Status and message of response. path:[${itemPath}]`, () => {
-                            logger.info(`Checking respone's status and message. path:[${itemPath}]`);
-                            expect(itemResponse.statusCode).equal(statusCode);
-                            expect(itemResponse.statusMessage).equals(statusMessage);
-                        });
-
-                        it(`Content-type value of the responce. path:[${itemPath}]`, () => {
-                            logger.info(`Checking respone's content-type value. path:[${itemPath}]`);
-                            expect(itemResponse.headers['content-type']).equal(data['content-type']);
-                        });
-
-                        it(`Verification the response body with schemas. path:[${itemPath}]`, () => {
-                            logger.info(`Checking respone's body with schemas. path:[${itemPath}]`);
-                            const valid = ajv.validate(require(data.itemSchema), itemResponse.body);
-                            if (!valid) {
-                                logger.debug(ajv.errors);
-                            }
-                            expect(valid).equal(true);
-                        });
-                    }
-                });
+                    });
+                }
             });
         });
     });
