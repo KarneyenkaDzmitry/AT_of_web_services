@@ -6,6 +6,7 @@
   "scripts": {
     "preinstall": "mkdir reports logs",
     "test": "./node_modules/.bin/mocha",
+    "posttest": "./reports/*.html",
     "lint": "./node_modules/.bin/eslint ./ --fix"
   },
   "repository": {

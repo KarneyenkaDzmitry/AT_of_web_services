@@ -1,0 +1,175 @@
+[
+    {
+        "uri": "/users",
+        "method": "POST",
+        "content-type": "application/json; charset=utf-8",
+        "itemSchema": "../data/schemas/user.schema.json",
+        "headers": {
+            "Content-type": "application/json; charset=UTF-8"
+        },
+        "body": {
+            "name": "test_name",
+            "username": "test_username",
+            "email": "test_email@test.com",
+            "address": {
+                "street": "test_street",
+                "suite": "test_suit",
+                "city": "test_city",
+                "zipcode": "92998-3874",
+                "geo": {
+                    "lat": "-37.3159",
+                    "lng": "81.1496"
+                }
+            },
+            "phone": "1-770-736-8031 x56442",
+            "website": "test_website.org",
+            "company": {
+                "name": "TEST",
+                "catchPhrase": "Multi-layered client-server neural-net",
+                "bs": "harness real-time e-markets"
+            }
+        },
+        "statusCode": 201,
+        "statusMessage" : "Created"
+    },
+    {
+        "uri": "/posts",
+        "method": "POST",
+        "content-type": "application/json; charset=utf-8",
+        "itemSchema": "../data/schemas/post.schema.json",
+        "headers": {
+            "Content-type": "application/json; charset=UTF-8"
+        },
+        "body": {
+            "title": "test_title",
+            "body": "test_body",
+            "userId": 1
+        },
+        "statusCode": 201,
+        "statusMessage" : "Created"
+    },
+    {
+        "uri": "/comments",
+        "method": "POST",
+        "content-type": "application/json; charset=utf-8",
+        "itemSchema": "../data/schemas/comment.schema.json",
+        "headers": {
+            "Content-type": "application/json; charset=UTF-8"
+        },
+        "body": {
+            "name": "test_name",
+            "body": "test_body",
+            "email": "test_email@test.com",
+            "postId": 1
+        },
+        "statusCode": 201,
+        "statusMessage" : "Created"
+    },
+    {
+        "uri": "/albums",
+        "method": "POST",
+        "content-type": "application/json; charset=utf-8",
+        "itemSchema": "../data/schemas/album.schema.json",
+        "headers": {
+            "Content-type": "application/json; charset=UTF-8"
+        },
+        "body": {
+            "title": "test_title",
+            "userId": 1
+        },
+        "statusCode": 201,
+        "statusMessage" : "Created"
+    },
+    {
+        "uri": "/photos",
+        "method": "POST",
+        "content-type": "application/json; charset=utf-8",
+        "itemSchema": "../data/schemas/photo.schema.json",
+        "headers": {
+            "Content-type": "application/json; charset=UTF-8"
+        },
+        "body": {
+            "albumId": 1,
+            "title": "test_title",
+            "url": "http://placehold.it/test_url",
+            "thumbnailUrl": "http://placehold.it/test_thumbnailUrl"
+        },
+        "statusCode": 201,
+        "statusMessage" : "Created"
+    },
+    {
+        "uri": "/todos",
+        "method": "POST",
+        "content-type": "application/json; charset=utf-8",
+        "itemSchema": "../data/schemas/todo.schema.json",
+        "headers": {
+            "Content-type": "application/json; charset=UTF-8"
+        },
+        "body": {
+            "userId": 1,
+            "title": "test_title",
+            "completed": false
+        },
+        "statusCode": 201,
+        "statusMessage" : "Created"
+    },
+    {
+        "uri": "/users/5",
+        "method": "PUT",
+        "content-type": "application/json; charset=utf-8",
+        "itemSchema": "../data/schemas/user.schema.json",
+        "headers": {
+            "Content-type": "application/json; charset=UTF-8"
+        },
+        "body": {
+            "name": "test_name",
+            "username": "test_username",
+            "email": "test_email@test.com",
+            "address": {
+                "street": "test_street",
+                "suite": "test_suit",
+                "city": "test_city",
+                "zipcode": "92998-3874",
+                "geo": {
+                    "lat": "-37.3159",
+                    "lng": "81.1496"
+                }
+            },
+            "phone": "1-770-736-8031 x56442",
+            "website": "test_website.org",
+            "company": {
+                "name": "TEST",
+                "catchPhrase": "Multi-layered client-server neural-net",
+                "bs": "harness real-time e-markets"
+            }
+        },
+        "statusCode": 200,
+        "statusMessage" : "OK"
+    },
+    {
+        "uri": "/users/6",
+        "method": "PATCH",
+        "content-type": "application/json; charset=utf-8",
+        "itemSchema": "../data/schemas/user.schema.json",
+        "headers": {
+            "Content-type": "application/json; charset=UTF-8"
+        },
+        "body": {
+            "name": "test_patch_name",
+            "username": "test_patch_username",
+            "email": "test_email@test.com",
+            "address": {
+                "street": "test_patch_street",
+                "suite": "test_patch_suit",
+                "city": "test_patch_city"
+            },
+            "phone": "1-012-345-6789 x56442",
+            "website": "test_patch_website.org",
+            "company": {
+                "name": "TEST_PATCH"
+            }
+        },
+        "statusCode": 200,
+        "statusMessage" : "OK"
+    }
+]

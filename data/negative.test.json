@@ -61,5 +61,35 @@
         "method": "OPTION",
         "statusCode": 400,
         "statusMessage" : "Bad Request"
+    },
+    {
+        "uri": "/users/3",
+        "method": "PATCH",
+        "statusCode": 400,
+        "statusMessage" : "Bad Request",
+        "headers": {
+            "Content-type": "application/json; charset=UTF-8"
+        },
+        "body": { }
+    },
+    {
+        "uri": "/users/3",
+        "method": "PATCH",
+        "statusCode": 400,
+        "statusMessage" : "Bad Request",
+        "headers": {
+            "Content-type": "text; charset=UTF-8"
+        },
+        "body": "Don't worry, be happy"
+    },
+    {
+        "uri": "/comments/2",
+        "method": "PUT",
+        "statusCode": 400,
+        "statusMessage" : "Bad Request",
+        "headers": {
+            "Content-type": "application/json; charset=UTF-8"
+        },
+        "body": {"property": "Don't worry, be happy"}
     }
 ]

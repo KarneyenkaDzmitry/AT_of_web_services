@@ -6,15 +6,15 @@ const ajv = new require('ajv')({ allErrors: true });
 
 class Checker {
     statusCode(expected, actual) {
-        return expect(actual).equal(expected);
+        return expect(expected).equal(actual);
     }
 
     statusMessage(expected, actual) {
-        return expect(actual).equal(expected);
+        return expect(expected).equal(actual);
     }
 
     contentType(expected, actual) {
-        return expect(actual).equal(expected);
+        return expect(expected).equal(actual);
     }
 
     body(expected, actual) {
@@ -23,6 +23,15 @@ class Checker {
             logger.debug(ajv.errors);
         }
         return expect(valid).equal(true);
+    }
+
+    bodyValues(expected, actual) {
+        Object.keys(expected).forEach((key) => {
+            logger.debug(`Expected [${expected[key]}], but actual [${actual[key]}]`);
+            /* eslint-disable */
+            typeof (expected[key]) === "object" ? this.bodyValues(expected[key], actual[key]) : expect(expected[key]).equals(actual[key]);
+            /* eslint-enable */
+        });
     }
 }
 

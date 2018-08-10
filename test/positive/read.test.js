@@ -1,15 +1,17 @@
 'use strict';
 const logger = require('../../configs/logger.conf');
 const sender = require('../../utils/sender');
-const usersData = require('../../data/simple.test.json');
+const testData = require('../../data/read.test.json');
 const BASEURI = require('../../data/host.json').uri;
 const statusCode = 200;
 const statusMessage = 'OK';
 const checker = require('../../utils/checker.js');
-const depth = 15;
 
-describe(`Tests of ${BASEURI}`, () => {
-    usersData.map((data) => {
+/** The variable of amount of id will be tested */
+const depth = 3;
+
+describe(`Read tests of ${BASEURI}`, () => {
+    testData.map((data) => {
         let response;
         const path = data.uri;
 
@@ -61,8 +63,8 @@ describe(`Tests of ${BASEURI}`, () => {
                         checker.body(data.itemSchema, itemResponse.body);
                     });
 
-                    it(`Verification nested resources. nested variants:[${data.nested}]  path:[${itemPath}]`, () => {
-                        describe(`Verification nested resources. nested variants:[${data.nested}]  path:[${itemPath}]`, () => {
+                    it(`Verification nested resources.`, () => {
+                        describe(`Verification nested Resources.`, () => {
                             data.nested.map((nest) => {
                                 const nestedPath = itemPath + nest.appendix;
                                 let nestedData = data;
