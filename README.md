@@ -38,38 +38,38 @@ For running report :
 
 ## Notes
 
-#### If the body of request is empty I suppose to receive request with: <br> 
-#### statusCode: "400" and statusMessage: "Bad Request"
-
-#### If the body of request contains not propriate property I suppose to receive request with: <br>
-#### statusCode: "400" and statusMessage: "Bad Request"
-
-#### If the body of request is string I suppose to receive request with: <br>
-#### statusCode: "400" and statusMessage: "Bad Request"
-
-#### If I sent request with not existing path I suppose to receive request with: <br>
-#### statusCode: "404" and statusMessage: "Not Found"
-
-#### If I sent request with not implemented method (UPDATE, OPTION) path I suppose to receive request with: <br>
-#### statusCode: "400" and statusMessage: "Bad Request"
-
-#### If I sent request with not suitable method for existing path () I suppose to receive request with: <br>
-#### statusCode: "404" and statusMessage: "Not Found"
-#### Examples: PUT for path - /users; POST for path - /users/1; PATCH for path - /users
-
+* If the body of request is empty I suppose to receive request with: <br> 
+* statusCode: "400" and statusMessage: "Bad Request"
+<br>
+* If the body of request contains not propriate property I suppose to receive request with: <br>
+* statusCode: "400" and statusMessage: "Bad Request"
+<br>
+* If the body of request is string I suppose to receive request with: <br>
+* statusCode: "400" and statusMessage: "Bad Request"
+<br>
+* If I sent request with not existing path I suppose to receive request with: <br>
+* statusCode: "404" and statusMessage: "Not Found"
+<br>
+* If I sent request with not implemented method (UPDATE, OPTION) path I suppose to receive request with: <br>
+* statusCode: "400" and statusMessage: "Bad Request"
+<br>
+* If I sent request with not suitable method for existing path () I suppose to receive request with: <br>
+* statusCode: "404" and statusMessage: "Not Found"
+* Examples: PUT for path - /users; POST for path - /users/1; PATCH for path - /users
+<br>
 ## Structure of the framework
 
 Folders: 
-- configs - there is config file for logger which based on lof4js module.[logger config](https://github.com/KarneyenkaDzmitry/AT_of_web_services/tree/master/configs)
-- data -  there are located json files with test data.[test data](https://github.com/KarneyenkaDzmitry/AT_of_web_services/tree/master/data)
-- data/schema - there are test schemas for testing body of response. Schemas based on ajv module.[schemas](https://github.com/KarneyenkaDzmitry/AT_of_web_services/tree/master/data/schemas)
-- test - home folder for all tests and config file for mocha [mocha.opt](https://github.com/KarneyenkaDzmitry/AT_of_web_services/blob/master/test/mocha.opts)
-- test/positive - there are positive tests [positive tests](https://github.com/KarneyenkaDzmitry/AT_of_web_services/tree/master/test/positive)
-- test/negative - there are negative tests [negative tests](https://github.com/KarneyenkaDzmitry/AT_of_web_services/tree/master/test/negative)
-- utils - it is folder for helpfull modules [utils](https://github.com/KarneyenkaDzmitry/AT_of_web_services/tree/master/utils)
+- configs - there is config file for logger which based on lof4js module. [logger config](https://github.com/KarneyenkaDzmitry/AT_of_web_services/tree/master/configs)
+- data -  there are located json files with test data. [test data](https://github.com/KarneyenkaDzmitry/AT_of_web_services/tree/master/data)
+- data/schema - there are test schemas for testing body of response. Schemas based on ajv module. [schemas](https://github.com/KarneyenkaDzmitry/AT_of_web_services/tree/master/data/schemas)
+- test - home folder for all tests and config file for mocha. [mocha.opt](https://github.com/KarneyenkaDzmitry/AT_of_web_services/blob/master/test/mocha.opts)
+- test/positive - there are positive tests. [positive tests](https://github.com/KarneyenkaDzmitry/AT_of_web_services/tree/master/test/positive)
+- test/negative - there are negative tests. [negative tests](https://github.com/KarneyenkaDzmitry/AT_of_web_services/tree/master/test/negative)
+- utils - it is folder for helpfull modules. [utils](https://github.com/KarneyenkaDzmitry/AT_of_web_services/tree/master/utils)
 
 In addition after install are created two folders:
-- logs - there are save logger's files: combine.log and error.log
+- logs - there are save logger's files: combine.log and error.log.
 - reports - all data for reports stored here.
 
 ### Author
