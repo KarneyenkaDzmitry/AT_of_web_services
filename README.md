@@ -53,7 +53,7 @@ statusCode: "404" and statusMessage: "Not Found"<br>
 If I sent request with not implemented method (UPDATE, OPTION) path I suppose to receive request with: <br>
 statusCode: "400" and statusMessage: "Bad Request"<br> 
 <br> 
-If I sent request with not suitable method for existing path () I suppose to receive request with: <br>
+If I sent request with not suitable method for existing path I suppose to receive request with: <br>
 statusCode: "404" and statusMessage: "Not Found"<br> 
 Examples: PUT for path - /users; POST for path - /users/1; PATCH for path - /users<br> 
 
@@ -69,8 +69,8 @@ Folders:
 - utils - it is folder for helpfull modules. [utils](https://github.com/KarneyenkaDzmitry/AT_of_web_services/tree/master/utils)
 
 In addition after install are created two folders:
-- logs - there are save logger's files: combine.log and error.log.
-- reports - all data for reports stored here.
+- logs - there wil be saved logger's files: combine.log and error.log.
+- reports - all data for reports wil be stored here.
 
 ### Author
 #### Dzmitry_Karneyenka, Republic of Belarus, Minsk
