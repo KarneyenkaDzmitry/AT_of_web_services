@@ -2,27 +2,32 @@
     {
         "uri" : "/books",
         "method" : "GET",
-        "statusCode" : 404
+        "statusCode" : 404,
+        "statusMessage" : "Not Found"
     },
     {
         "uri" : "/things/1",
         "method" : "GET",
-        "statusCode" : 404
+        "statusCode" : 404,
+        "statusMessage" : "Not Found"
     },
     {
         "uri" : "/users/1",
         "method" : "UPDATE",
-        "statusCode" : 400
+        "statusCode" : 400,
+        "statusMessage" : "Bad Request"
     },
     {
         "uri" : "/posts/50",
         "method" : "OPTION",
-        "statusCode" : 400
+        "statusCode" : 400,
+        "statusMessage" : "Bad Request"
     },
     {
         "uri": "/users",
         "method": "PUT",
         "statusCode": 404,
+        "statusMessage" : "Not Found",
         "body": {
             "userId" : 12,
             "title" : "This is my title",
@@ -36,6 +41,7 @@
         "uri": "/user/1",
         "method": "POST",
         "statusCode": 404,
+        "statusMessage" : "Not Found",
         "body": {},
         "headers": {
             "Content-type": "application/json; charset=UTF-8"
@@ -45,6 +51,7 @@
         "uri": "/users",
         "method": "PATCH",
         "statusCode": 404,
+        "statusMessage" : "Not Found",
         "body": {
             "username" : "Dzmitry"
         }
@@ -52,6 +59,7 @@
     {
         "uri": "/posts/50",
         "method": "OPTION",
-        "statusCode": 400
+        "statusCode": 400,
+        "statusMessage" : "Bad Request"
     }
 ]

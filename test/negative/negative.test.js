@@ -1,18 +1,13 @@
 'use strict';
-const { expect } = require('chai');
 const logger = require('../../configs/logger.conf');
 const sender = require('../../utils/sender');
 const usersData = require('../../data/negative.test.json');
+const checker = require('../../utils/checker');
 const BASEURI = require('../../data/host.json').uri;
-
-/* eslint-disable */
-const statusMessage = 'Not Found';
-/* eslint-enable */
 
 describe(`Negative tests of ${BASEURI}`, () => {
     usersData.map((data) => {
         const path = data.uri;
-        const statusCode = data.statusCode;
         before(() => {
             data.uri = BASEURI + path;
         });
@@ -23,10 +18,11 @@ describe(`Negative tests of ${BASEURI}`, () => {
             try {
                 response = await sender(data);
             } catch (error) {
-                response = error;
+                response = error.response;
             } finally {
-                logger.debug(response.statusCode);
-                expect(response.statusCode).equals(statusCode);
+                logger.debug(response.statusCode + ' ' + response.statusMessage);
+                checker.statusCode(response.statusCode, data.statusCode);
+                checker.statusMessage(response.statusMessage, data.statusMessage);
             }
         });
     });

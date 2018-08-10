@@ -1,65 +1,88 @@
 [
     {
-        "uri":"/users",
+        "uri": "/users",
         "method": "GET",
-        "content-type" : "application/json; charset=utf-8",
-        "schema" : "../data/schemas/users.schema.json",
-        "itemSchema" : "../data/schemas/user.schema.json",
-        "items" : 0,
-        "nested" : ["/albums", "/todos", "/posts"]
+        "content-type": "application/json; charset=utf-8",
+        "schema": "../data/schemas/users.schema.json",
+        "itemSchema": "../data/schemas/user.schema.json",
+        "items": 0,
+        "nested": [
+            {
+                "appendix": "/albums",
+                "schema": "../data/schemas/albums.schema.json"
+            },
+            {
+                "appendix": "/todos",
+                "schema": "../data/schemas/todos.schema.json"
+            },
+            {
+                "appendix": "/posts",
+                "schema": "../data/schemas/posts.schema.json"
+            }
+        ]
     },
     {
-        "uri":"/posts",
+        "uri": "/posts",
         "method": "GET",
-        "content-type" : "application/json; charset=utf-8",
-        "schema" : "../data/schemas/posts.schema.json",
-        "itemSchema" : "../data/schemas/post.schema.json",
-        "items" : 0,
-        "nested" : ["/comments"]
+        "content-type": "application/json; charset=utf-8",
+        "schema": "../data/schemas/posts.schema.json",
+        "itemSchema": "../data/schemas/post.schema.json",
+        "items": 0,
+        "nested": [
+            {
+                "appendix": "/comments",
+                "schema": "../data/schemas/comments.schema.json"
+            }
+        ]
     },
     {
-        "uri":"/comments",
+        "uri": "/comments",
         "method": "GET",
-        "content-type" : "application/json; charset=utf-8",
-        "schema" : "../data/schemas/comments.schema.json",
-        "itemSchema" : "../data/schemas/comment.schema.json",
-        "items" : 0,
-        "nested" : []
+        "content-type": "application/json; charset=utf-8",
+        "schema": "../data/schemas/comments.schema.json",
+        "itemSchema": "../data/schemas/comment.schema.json",
+        "items": 0,
+        "nested": []
     },
     {
-        "uri":"/albums",
+        "uri": "/albums",
         "method": "GET",
-        "content-type" : "application/json; charset=utf-8",
-        "schema" : "../data/schemas/albums.schema.json",
-        "itemSchema" : "../data/schemas/album.schema.json",
-        "items" : 0,
-        "nested" : ["/photos"]
+        "content-type": "application/json; charset=utf-8",
+        "schema": "../data/schemas/albums.schema.json",
+        "itemSchema": "../data/schemas/album.schema.json",
+        "items": 0,
+        "nested": [
+            {
+                "appendix": "/photos",
+                "schema": "../data/schemas/photos.schema.json"
+            }
+        ]
     },
     {
-        "uri":"/photos",
+        "uri": "/photos",
         "method": "GET",
-        "content-type" : "application/json; charset=utf-8",
-        "schema" : "../data/schemas/photos.schema.json",
-        "itemSchema" : "../data/schemas/photo.schema.json",
-        "items" : 0,
-        "nested" : []
+        "content-type": "application/json; charset=utf-8",
+        "schema": "../data/schemas/photos.schema.json",
+        "itemSchema": "../data/schemas/photo.schema.json",
+        "items": 0,
+        "nested": []
     },
     {
-        "uri":"/todos",
+        "uri": "/todos",
         "method": "GET",
-        "content-type" : "application/json; charset=utf-8",
-        "schema" : "../data/schemas/todos.schema.json",
-        "itemSchema" : "../data/schemas/todo.schema.json",
-        "items" : 0,
-        "nested" : []
+        "content-type": "application/json; charset=utf-8",
+        "schema": "../data/schemas/todos.schema.json",
+        "itemSchema": "../data/schemas/todo.schema.json",
+        "items": 0,
+        "nested": []
     },
     {
-        "uri":"/todos",
+        "uri": "/todos",
         "method": "GET",
-        "content-type" : "application/json; charset=utf-8",
-        "schema" : "../data/schemas/todos.schema.json",
-        "itemSchema" : "../data/schemas/todo.schema.json",
-        "items" : 0,
-        "nested" : []
+        "content-type": "application/json; charset=utf-8",
+        "schema": "../data/schemas/todos.schema.json",
+        "itemSchema": "../data/schemas/todo.schema.json",
+        "items": 0,
+        "nested": []
     }
 ]

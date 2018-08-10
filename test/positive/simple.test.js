@@ -6,6 +6,7 @@ const BASEURI = require('../../data/host.json').uri;
 const statusCode = 200;
 const statusMessage = 'OK';
 const checker = require('../../utils/checker.js');
+const depth = 15;
 
 describe(`Tests of ${BASEURI}`, () => {
     usersData.map((data) => {
@@ -15,7 +16,7 @@ describe(`Tests of ${BASEURI}`, () => {
         before(async () => {
             data.uri = BASEURI + path;
             response = await sender(data);
-            data.items = response.body.length < 15 ? response.body.length : 15;
+            data.items = response.body.length < depth ? response.body.length : depth;
         });
 
         it(`Status and message of response. path:[${path}]`, () => {
@@ -62,8 +63,8 @@ describe(`Tests of ${BASEURI}`, () => {
 
                     it(`Verification nested resources. nested variants:[${data.nested}]  path:[${itemPath}]`, () => {
                         describe(`Verification nested resources. nested variants:[${data.nested}]  path:[${itemPath}]`, () => {
-                            data.nested.map((appendix) => {
-                                const nestedPath = itemPath + appendix;
+                            data.nested.map((nest) => {
+                                const nestedPath = itemPath + nest.appendix;
                                 let nestedData = data;
                                 let nestedResponse;
                                 before(async () => {
@@ -83,10 +84,10 @@ describe(`Tests of ${BASEURI}`, () => {
                                     checker.contentType(nestedResponse.headers['content-type'], data['content-type']);
                                 });
 
-                                // it(`Verification the response body with schemas. path:[${nestedPath}]`, () => {
-                                //     logger.info(`Checking respone's body with schemas. path:[${nestedPath}]`);
-                                //     checker.body(data.schema, nestedResponse.body);
-                                // });
+                                it(`Verification the response body with schemas. path:[${nestedPath}]`, () => {
+                                    logger.info(`Checking respone's body with schemas. path:[${nestedPath}]`);
+                                    checker.body(nest.schema, nestedResponse.body);
+                                });
                             });
                         });
                     });
