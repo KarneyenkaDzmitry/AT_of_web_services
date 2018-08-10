@@ -40,23 +40,24 @@ For running report :
 
 * If the body of request is empty I suppose to receive request with: <br> 
 * statusCode: "400" and statusMessage: "Bad Request"
-<br>
+
 * If the body of request contains not propriate property I suppose to receive request with: <br>
 * statusCode: "400" and statusMessage: "Bad Request"
-<br>
+
 * If the body of request is string I suppose to receive request with: <br>
 * statusCode: "400" and statusMessage: "Bad Request"
-<br>
+
 * If I sent request with not existing path I suppose to receive request with: <br>
 * statusCode: "404" and statusMessage: "Not Found"
-<br>
+
 * If I sent request with not implemented method (UPDATE, OPTION) path I suppose to receive request with: <br>
 * statusCode: "400" and statusMessage: "Bad Request"
-<br>
+
 * If I sent request with not suitable method for existing path () I suppose to receive request with: <br>
 * statusCode: "404" and statusMessage: "Not Found"
 * Examples: PUT for path - /users; POST for path - /users/1; PATCH for path - /users
-<br>
+
+
 ## Structure of the framework
 
 Folders: 
