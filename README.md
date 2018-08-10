@@ -1,6 +1,6 @@
 # AT_of_web_services version 1.1.0 ([AT Lab#19])
 
-The framework tests rest api of servise - [https://jsonplaceholder.typicode.com](https://jsonplaceholder.typicode.com) <br>
+## The framework tests rest api of servise - [https://jsonplaceholder.typicode.com](https://jsonplaceholder.typicode.com) <br>
 
 ## Implementation
 
@@ -34,7 +34,7 @@ For running tests execute command:
 For checking codestyle with linter:
 #### $ npm run lint
 For running report :
-#### $ npm report
+#### $ npm run report
 
 ## Notes
 
@@ -55,7 +55,19 @@ For running report :
 
 #### If I sent request with not suitable method for existing path () I suppose to receive request with: <br>
 #### statusCode: "404" and statusMessage: "Not Found"
-#### Examples: PUT for path - /users; POST for path - /users/1; PATCH for path - users
+#### Examples: PUT for path - /users; POST for path - /users/1; PATCH for path - /users
+
+## Structure of the framework
+
+Folders: 
+- configs - there is config file for logger which based on lof4js module.
+- data -  there are located json files with test data.
+- data/schema - there are test schemas for testing body of response. Schemas based on ajv module.
+- logs - there are save logger's files: combine.log and error.log
+- reports - all data for reports stored here.
+- test - home folder for all tests and config file for mocha [mocha.opt](https://github.com/KarneyenkaDzmitry/AT_of_web_services/blob/master/test/mocha.opts)
+- test/positive - there are positive tests 
+- test/negative - there are negative tests
 
 
 ### Author
