@@ -4,18 +4,18 @@ const { expect } = require('chai');
 const logger = require('../configs/logger.conf');
 const ajv = new require('ajv')({ allErrors: true });
 
-class Checker {
+module.exports = {
     statusCode(expected, actual) {
         return expect(expected).equal(actual);
-    }
+    },
 
     statusMessage(expected, actual) {
         return expect(expected).equal(actual);
-    }
+    },
 
     contentType(expected, actual) {
         return expect(expected).equal(actual);
-    }
+    },
 
     body(expected, actual) {
         const valid = ajv.validate(require(expected), actual);
@@ -23,7 +23,7 @@ class Checker {
             logger.debug(ajv.errors);
         }
         return expect(valid).equal(true);
-    }
+    },
 
     bodyValues(expected, actual) {
         Object.keys(expected).forEach((key) => {
@@ -33,6 +33,4 @@ class Checker {
             /* eslint-enable */
         });
     }
-}
-
-module.exports = new Checker();
+};

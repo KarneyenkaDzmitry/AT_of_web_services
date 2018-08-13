@@ -5,25 +5,22 @@ const usersData = require('../../data/negative.test.json');
 const checker = require('../../utils/checker');
 const BASEURI = require('../../data/host.json').uri;
 
-describe(`Negative tests of ${BASEURI}`, () => {
+describe(`Negative (wrong: path, body; not implemented method) tests of ${BASEURI}`, () => {
     usersData.map((data) => {
         const path = data.uri;
-        before(() => {
+        let response;
+        const info = `${data.method}, ${path}`;
+
+        before(async () => {
             data.uri = BASEURI + path;
+            response = await sender(data);
         });
 
-        it(`Status and message of response. path:[${path}]`, async () => {
+        it(`[${info}]. Status and message of response.`, async () => {
             logger.info(`Checking respone's status and message. path:[${path}]`);
-            let response;
-            try {
-                response = await sender(data);
-            } catch (error) {
-                response = error.response;
-            } finally {
-                logger.debug(response.statusCode + ' ' + response.statusMessage);
-                checker.statusCode(response.statusCode, data.statusCode);
-                checker.statusMessage(response.statusMessage, data.statusMessage);
-            }
+            checker.statusCode(response.statusCode, data.statusCode);
+            checker.statusMessage(response.statusMessage, data.statusMessage);
+            logger.debug(response.statusCode + ' ' + response.statusMessage);
         });
     });
 });

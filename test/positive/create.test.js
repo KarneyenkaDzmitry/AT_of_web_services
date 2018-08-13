@@ -5,37 +5,33 @@ const testData = require('../../data/create.test.json');
 const BASEURI = require('../../data/host.json').uri;
 const checker = require('../../utils/checker.js');
 
-describe(`Positive create tests of ${BASEURI} service`, () => {
+describe(`Positive create (method: POST) tests of ${BASEURI} service`, () => {
     testData.map((data) => {
         let response;
         const path = data.uri;
+        const info = `${data.method}, ${path}`;
 
         before(async () => {
-            data.uri = BASEURI + path;
+            data.uri = BASEURI + data.uri;
             response = await sender(data);
         });
 
-        it(`Status and message of response. path:[${path}]`, () => {
-            logger.info(`Checking respone's status and message. path:[${path}]`);
+        it(`[${info}]. Status and message of response.`, () => {
             checker.statusCode(response.statusCode, data.statusCode);
             checker.statusMessage(response.statusMessage, data.statusMessage);
         });
 
-        it(`Content-type value of the responce. path:[${path}]`, () => {
-            logger.info(`Checking respone's content-type value. path:[${path}]`);
+        it(`[${info}]. Content-type value of the responce.`, () => {
             checker.contentType(response.headers['content-type'], data['content-type']);
         });
 
-        it(`Verification the response body with schemas. path:[${path}]`, () => {
-            logger.info(`Checking respone's body with schemas. path:[${path}]`);
+        it(`[${info}]. Verification the response body with schemas`, () => {
             checker.body(data.itemSchema, response.body);
             logger.debug(response.body);
         });
 
-        it(`Verification the response bodyValues. path:[${path}]`, () => {
-            logger.info(`Verification the response bodyValues. path:[${path}]`);
+        it(`[${info}]. Verification the response bodyValues.`, () => {
             checker.bodyValues(data.body, response.body);
-            logger.debug(response.body);
         });
     });
 });

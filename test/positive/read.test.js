@@ -10,10 +10,11 @@ const checker = require('../../utils/checker.js');
 /** The variable of amount of id will be tested */
 const depth = 3;
 
-describe(`Read tests of ${BASEURI}`, () => {
+describe(`Read tests (method GET) of ${BASEURI}`, () => {
     testData.map((data) => {
         let response;
         const path = data.uri;
+        const info = `${data.method}, ${path}`;
 
         before(async () => {
             data.uri = BASEURI + path;
@@ -21,73 +22,67 @@ describe(`Read tests of ${BASEURI}`, () => {
             data.items = response.body.length < depth ? response.body.length : depth;
         });
 
-        it(`Status and message of response. path:[${path}]`, () => {
-            logger.info(`Checking respone's status and message. path:[${path}]`);
+        it(`[${info}]. Status and message of response.`, () => {
             checker.statusCode(response.statusCode, statusCode);
             checker.statusMessage(response.statusMessage, statusMessage);
         });
 
-        it(`Content-type value of the responce. path:[${path}]`, () => {
-            logger.info(`Checking respone's content-type value. path:[${path}]`);
+        it(`[${info}]. Content-type value of the responce.`, () => {
             checker.contentType(response.headers['content-type'], data['content-type']);
         });
 
-        it(`Verification the response body with schemas. path:[${path}]`, () => {
-            logger.info(`Checking respone's body with schemas. path:[${path}]`);
+        it(`[${info}]. Verification the response body with schemas.`, () => {
             checker.body(data.schema, response.body);
         });
 
-        it(`Tests of items [${path}]`, () => {
-            describe(`There are [${data.items}] items`, () => {
+        it(`[${data.method}, [${path}/:id]. Tests of read first [${data.items}] elements data by id.`, () => {
+            describe(`[${data.method}, [${path}/:id]. Tests of read first [${data.items}] elements data by id.`, () => {
                 for (let item = 1; item <= data.items; item++) {
                     let itemResponse;
                     const itemPath = data.uri + `/${item}`;
+                    const itemInfo = `${data.method}, ${path}/${item}`;
                     before(async () => {
                         data.uri = itemPath;
                         itemResponse = await sender(data);
                     });
 
-                    it(`Status and message of response. path:[${itemPath}]`, () => {
-                        logger.info(`Checking respone's status and message. path:[${itemPath}]`);
+                    it(`[${itemInfo}]. Status and message of response.`, () => {
                         checker.statusCode(itemResponse.statusCode, statusCode);
                         checker.statusMessage(itemResponse.statusMessage, statusMessage);
                     });
 
-                    it(`Content-type value of the responce. path:[${itemPath}]`, () => {
-                        logger.info(`Checking respone's content-type value. path:[${itemPath}]`);
+                    it(`[${itemInfo}]. Content-type value of the responce.`, () => {
                         checker.contentType(itemResponse.headers['content-type'], data['content-type']);
                     });
 
-                    it(`Verification the response body with schemas. path:[${itemPath}]`, () => {
-                        logger.info(`Checking respone's body with schemas. path:[${itemPath}]`);
+                    it(`[${itemInfo}]. Verification the response body with schemas.`, () => {
                         checker.body(data.itemSchema, itemResponse.body);
                     });
 
-                    it(`Verification nested resources.`, () => {
-                        describe(`Verification nested Resources.`, () => {
+                    it(`Verification nested paths. Example: [${itemInfo}/:resource(/comments, /posts...)]`, () => {
+                        describe(`Verification nested paths. Example: [${itemInfo}/:resource(comments, posts...)]`, () => {
                             data.nested.map((nest) => {
                                 const nestedPath = itemPath + nest.appendix;
                                 let nestedData = data;
                                 let nestedResponse;
+                                const nestedInfo = `${data.method}, ${path}/${item}${nest.appendix}`;
+
                                 before(async () => {
                                     nestedData.uri = nestedPath;
                                     logger.debug("nestedData: " + JSON.stringify(nestedPath + '   ' + nestedData.uri));
                                     nestedResponse = await sender(nestedData);
                                 });
 
-                                it(`Status and message of response. path:[${nestedPath}]`, () => {
-                                    logger.info(`Checking respone's status and message. path:[${nestedPath}]`);
+                                it(`[${nestedInfo}]. Status and message of response.`, () => {
                                     checker.statusCode(nestedResponse.statusCode, statusCode);
                                     checker.statusMessage(nestedResponse.statusMessage, statusMessage);
                                 });
 
-                                it(`Content-type value of the responce. path:[${nestedPath}]`, () => {
-                                    logger.info(`Checking respone's content-type value. path:[${nestedPath}]`);
+                                it(`[${nestedInfo}]. Content-type value of the responce.`, () => {
                                     checker.contentType(nestedResponse.headers['content-type'], data['content-type']);
                                 });
 
-                                it(`Verification the response body with schemas. path:[${nestedPath}]`, () => {
-                                    logger.info(`Checking respone's body with schemas. path:[${nestedPath}]`);
+                                it(`[${nestedInfo}]. Verification the response body with schemas.`, () => {
                                     checker.body(nest.schema, nestedResponse.body);
                                 });
                             });
