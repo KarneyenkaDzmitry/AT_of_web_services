@@ -1,20 +1,20 @@
 const request = require('request-promise-native');
 
 function sendRestRequestWithHeader(parameters) {
+    const { uri, method, headers, body } = parameters;
     let options = {
-        uri: parameters.uri,
-        method: parameters.method,
-        headers: parameters.header,
+        uri: uri,
+        method: method,
+        headers: headers,
         resolveWithFullResponse: true,
         json: true,
-        body: parameters.body,
+        body: body,
         simple: false
     };
 
     return request(options).then((response) => {
         return response;
     });
-
 }
 
 module.exports = sendRestRequestWithHeader;
